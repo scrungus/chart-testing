@@ -1,4 +1,4 @@
-module github.com/helm/chart-testing/v3
+module github.com/scrungus/chart-testing/v3
 
 go 1.19
 
@@ -7,6 +7,7 @@ require (
 	github.com/Masterminds/semver v1.5.0
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/go-retryablehttp v0.7.1
+	github.com/helm/chart-testing/v3 v3.7.1
 	github.com/mattn/go-shellwords v1.0.12
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.6.1
