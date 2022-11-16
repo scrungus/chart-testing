@@ -18,8 +18,8 @@ import (
 	"fmt"
 
 	"github.com/MakeNowJust/heredoc"
-	"github.com/helm/chart-testing/v3/pkg/chart"
-	"github.com/helm/chart-testing/v3/pkg/config"
+	"github.com/scrungus/chart-testing/v3/pkg/chart"
+	"github.com/scrungus/chart-testing/v3/pkg/config"
 
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"

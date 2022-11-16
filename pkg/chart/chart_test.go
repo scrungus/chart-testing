@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/helm/chart-testing/v3/pkg/config"
-	"github.com/helm/chart-testing/v3/pkg/util"
+	"github.com/scrungus/chart-testing/v3/pkg/config"
+	"github.com/scrungus/chart-testing/v3/pkg/util"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
@@ -63,7 +63,7 @@ func (g fakeGit) RemoveWorktree(path string) error {
 }
 
 func (g fakeGit) GetURLForRemote(remote string) (string, error) {
-	return "git@github.com/helm/chart-testing", nil
+	return "git@github.com/scrungus/chart-testing", nil
 }
 
 func (g fakeGit) ValidateRepository() error {

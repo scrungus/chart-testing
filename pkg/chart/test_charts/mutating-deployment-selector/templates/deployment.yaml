@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     # Revision should change with each helm upgrade, so if we use it here
-    # and don't specify spec.selector, we run into https://github.com/helm/charts/issues/7726
+    # and don't specify spec.selector, we run into https://github.com/scrungus/charts/issues/7726
     revision: {{ .Release.Revision | quote }}
 spec:
   replicas: {{ .Values.replicaCount }}

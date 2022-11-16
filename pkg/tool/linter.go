@@ -14,7 +14,7 @@
 
 package tool
 
-import "github.com/helm/chart-testing/v3/pkg/exec"
+import "github.com/scrungus/chart-testing/v3/pkg/exec"
 
 type Linter struct {
 	exec exec.ProcessExecutor

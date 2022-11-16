@@ -23,10 +23,10 @@ import (
 
 	"github.com/Masterminds/semver"
 
-	"github.com/helm/chart-testing/v3/pkg/config"
-	"github.com/helm/chart-testing/v3/pkg/exec"
-	"github.com/helm/chart-testing/v3/pkg/tool"
-	"github.com/helm/chart-testing/v3/pkg/util"
+	"github.com/scrungus/chart-testing/v3/pkg/config"
+	"github.com/scrungus/chart-testing/v3/pkg/exec"
+	"github.com/scrungus/chart-testing/v3/pkg/tool"
+	"github.com/scrungus/chart-testing/v3/pkg/util"
 )
 
 const maxNameLength = 63
@@ -510,7 +510,7 @@ func (t *Testing) InstallChart(chart *Chart) TestResult {
 		if result.Error != nil {
 			return result
 		}
-		// Test upgrade of current version (related: https://github.com/helm/chart-testing/issues/19)
+		// Test upgrade of current version (related: https://github.com/scrungus/chart-testing/issues/19)
 		if err := t.doUpgrade(chart, chart, true); err != nil {
 			result.Error = err
 			return result

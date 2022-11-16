@@ -72,7 +72,7 @@ configure_kubectl() {
 }
 
 run_test() {
-    git remote add k8s https://github.com/helm/charts.git &> /dev/null || true
+    git remote add k8s https://github.com/scrungus/charts.git &> /dev/null || true
     git fetch k8s
     docker exec "$testcontainer_id" ct lint --chart-dirs stable,incubator --remote k8s
     docker exec "$testcontainer_id" ct install --chart-dirs stable,incubator --remote k8s

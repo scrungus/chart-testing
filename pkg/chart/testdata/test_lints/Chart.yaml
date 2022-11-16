@@ -3,7 +3,7 @@ appVersion: xoxo
 description: A Helm chart for testing
 name: invalid
 version: 1.2.3
-home: https://github.com/helm/chart-testing
+home: https://github.com/scrungus/chart-testing
 maintainers:
   - name: invalid
   - email: invalid@example.com

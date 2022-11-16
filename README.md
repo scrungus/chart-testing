@@ -1,8 +1,8 @@
 # Chart Testing
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Go Report Card](https://goreportcard.com/badge/github.com/helm/chart-testing)](https://goreportcard.com/report/github.com/helm/chart-testing)
-![ci](https://github.com/helm/chart-testing/workflows/ci/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/scrungus/chart-testing)](https://goreportcard.com/report/github.com/scrungus/chart-testing)
+![ci](https://github.com/scrungus/chart-testing/workflows/ci/badge.svg)
 
 `ct` is the the tool for testing Helm charts.
 It is meant to be used for linting and testing pull requests.
@@ -25,7 +25,7 @@ It comes with all necessary tools installed.
 
 Download the release distribution for your OS from the Releases page:
 
-https://github.com/helm/chart-testing/releases
+https://github.com/scrungus/chart-testing/releases
 
 Unpack the `ct` binary, add it to your PATH, and you are good to go!
 
@@ -53,7 +53,7 @@ See documentation for individual commands:
 
 For a more extensive how-to guide, please see:
 
-* [charts-repo-actions-demo](https://github.com/helm/charts-repo-actions-demo)
+* [charts-repo-actions-demo](https://github.com/scrungus/charts-repo-actions-demo)
 
 ## Configuration
 
@@ -188,11 +188,11 @@ Build ct using Goreleaser.
 
 Before a release is created, versions have to be updated in the examples.
 A pull request needs to be created for this, which should be merged right before the release is cut.
-Here's a previous one for reference: https://github.com/helm/chart-testing/pull/89
+Here's a previous one for reference: https://github.com/scrungus/chart-testing/pull/89
 
 ### Create Release
 
-The release workflow is [dispatched from github actions](https://github.com/helm/chart-testing/actions)
+The release workflow is [dispatched from github actions](https://github.com/scrungus/chart-testing/actions)
 Versions must start with a lower-case `v`, e. g. `v3.5.0`.
 
 ## Supported versions
@@ -205,5 +205,5 @@ For example, if the current MAJOR version is `v2`, the pull request base branch 
 ## Upgrading
 
 When upgrading from `< v2.0.0` you will also need to change the usage in your scripts.
-This is because, while the [v2.0.0](https://github.com/helm/chart-testing/releases/tag/v2.0.0) release has parity with `v1`, it was refactored from a bash library to Go so there are minor syntax differences.
-Compare [v1 usage](https://github.com/helm/chart-testing/tree/release-v1#usage) with this (`v2`) version's README [usage](#usage) section above.
+This is because, while the [v2.0.0](https://github.com/scrungus/chart-testing/releases/tag/v2.0.0) release has parity with `v1`, it was refactored from a bash library to Go so there are minor syntax differences.
+Compare [v1 usage](https://github.com/scrungus/chart-testing/tree/release-v1#usage) with this (`v2`) version's README [usage](#usage) section above.
