@@ -17,12 +17,12 @@ builds:
       - CGO_ENABLED=0
     goarch:
       - amd64
-      #- arm64
-      #- arm
+      - arm64
+      - arm
     goos:
       - linux
-      #- darwin
-      #- windows
+      - darwin
+      - windows
     flags:
       - -trimpath
     mod_timestamp: '{{ .CommitTimestamp }}'
@@ -62,10 +62,31 @@ dockers:
       - --label=org.opencontainers.image.title={{ .ProjectName }}
       - --label=org.opencontainers.image.created={{ .Date }}
       - --label=org.opencontainers.image.description=ct - The chart testing tool
-      - --label=org.opencontainers.image.vendor=Helm
+      - --label=org.opencontainers.image.vendor=scrungus
       - --label=org.opencontainers.image.licenses=Apache-2.0
       - --label=org.opencontainers.image.source=https://github.com/scrungus/chart-testing
-      - --label=org.opencontainers.image.authors=The Helm Authors
+      - --label=org.opencontainers.image.authors=The scrungus Authors
+    extra_files:
+      - etc/chart_schema.yaml
+      - etc/lintconf.yaml
+  - skip_push: false
+    goarch: arm64
+    use: buildx
+    dockerfile: Dockerfile
+    image_templates:
+      - quay.io/scrungus/chart-testing:{{ .Tag }}-arm64
+      - quay.io/scrungus/chart-testing:latest-arm64
+    build_flag_templates:
+      - --platform=linux/arm64
+      - --label=org.opencontainers.image.version={{ .Version }}
+      - --label=org.opencontainers.image.revision={{ .Commit }}
+      - --label=org.opencontainers.image.title={{ .ProjectName }}
+      - --label=org.opencontainers.image.created={{ .Date }}
+      - --label=org.opencontainers.image.description=ct - The chart testing tool
+      - --label=org.opencontainers.image.vendor=scrungus
+      - --label=org.opencontainers.image.licenses=Apache-2.0
+      - --label=org.opencontainers.image.source=https://github.com/scrungus/chart-testing
+      - --label=org.opencontainers.image.authors=The scrungus Authors
     extra_files:
       - etc/chart_schema.yaml
       - etc/lintconf.yaml
