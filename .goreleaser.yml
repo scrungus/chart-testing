@@ -53,8 +53,8 @@ dockers:
     use: buildx
     dockerfile: Dockerfile
     image_templates:
-      - quay.io/helmpack/chart-testing:{{ .Tag }}-amd64
-      - quay.io/helmpack/chart-testing:latest-amd64
+      - quay.io/scrungus/chart-testing:{{ .Tag }}-amd64
+      - quay.io/scrungus/chart-testing:latest-amd64
     build_flag_templates:
       - --platform=linux/amd64
       - --label=org.opencontainers.image.version={{ .Version }}
@@ -71,14 +71,14 @@ dockers:
       - etc/lintconf.yaml
 
 docker_manifests:
-- name_template: quay.io/helmpack/chart-testing:latest
+- name_template: quay.io/scrungus/chart-testing:latest
   image_templates:
-  - quay.io/helmpack/chart-testing:latest-amd64
-  - quay.io/helmpack/chart-testing:latest-arm64
-- name_template: quay.io/helmpack/chart-testing:{{ .Tag }}
+  - quay.io/scrungus/chart-testing:latest-amd64
+  - quay.io/scrungus/chart-testing:latest-arm64
+- name_template: quay.io/scrungus/chart-testing:{{ .Tag }}
   image_templates:
-  - quay.io/helmpack/chart-testing:{{ .Tag }}-amd64
-  - quay.io/helmpack/chart-testing:{{ .Tag }}-arm64
+  - quay.io/scrungus/chart-testing:{{ .Tag }}-amd64
+  - quay.io/scrungus/chart-testing:{{ .Tag }}-arm64
 
 signs:
   - id: all
