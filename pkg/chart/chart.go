@@ -482,7 +482,8 @@ func (t *Testing) LintChart(chart *Chart) TestResult {
 
 	for _, valuesFile := range valuesFiles {
 		// Lint with extra value files if specified
-		extraValues := append(t.config.ExtraValues, valuesFile)
+		extraValues := t.config.ExtraValues
+		extraValues = append(extraValues, valuesFile)
 
 		if valuesFile != "" {
 			fmt.Printf("\nLinting chart with values file %q...", valuesFile)

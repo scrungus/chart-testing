@@ -48,8 +48,8 @@ func (h Helm) BuildDependenciesWithArgs(chart string, extraArgs []string) error 
 
 func (h Helm) LintWithValues(chart string, valuesFiles []string) error {
 	var values []string
-	for _, valuesFile := range valuesFiles {
 
+	for _, valuesFile := range valuesFiles {
 		if valuesFile != "" {
 			values = append(values, []string{"--values", valuesFile}...)
 		}
