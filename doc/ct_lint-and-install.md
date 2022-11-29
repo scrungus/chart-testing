@@ -57,6 +57,7 @@ ct lint-and-install [flags]
                                              that order
       --namespace string                     Namespace to install the release(s) into. If not specified, each release will be
                                              installed in its own randomly generated namespace
+      --openstack-deploy                     Wait for kubernetes resources specific to openstack
       --print-config                         Prints the configuration to stderr (caution: setting this may
                                              expose sensitive data when helm-repo-extra-args contains passwords)
       --release-label string                 The label to be used as a selector when inspecting resources created by charts.

@@ -21,6 +21,7 @@ ct list-changed [flags]
       --excluded-charts strings   Charts that should be skipped. May be specified multiple times
                                   or separate values with commas
   -h, --help                      help for list-changed
+      --openstack-deploy          Wait for kubernetes resources specific to openstack
       --print-config              Prints the configuration to stderr (caution: setting this may
                                   expose sensitive data when helm-repo-extra-args contains passwords)
       --remote string             The name of the Git remote used to identify changed charts (default "origin")

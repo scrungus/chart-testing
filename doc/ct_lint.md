@@ -61,6 +61,7 @@ ct lint [flags]
       --lint-conf string                     The config file for YAML linting. If not specified, 'lintconf.yaml'
                                              is searched in the current directory, '$HOME/.ct', and '/etc/ct', in
                                              that order
+      --openstack-deploy                     Wait for kubernetes resources specific to openstack
       --print-config                         Prints the configuration to stderr (caution: setting this may
                                              expose sensitive data when helm-repo-extra-args contains passwords)
       --remote string                        The name of the Git remote used to identify changed charts (default "origin")
