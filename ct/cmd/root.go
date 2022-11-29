@@ -77,6 +77,7 @@ func addCommonFlags(flags *pflag.FlagSet) {
 		Prints the configuration to stderr (caution: setting this may
 		expose sensitive data when helm-repo-extra-args contains passwords)`))
 	flags.Bool("exclude-deprecated", false, "Skip charts that are marked as deprecated")
+	flags.Bool("openstack-deploy", false, "Wait for kubernetes resources specific to openstack")
 }
 
 func addCommonLintAndInstallFlags(flags *pflag.FlagSet) {

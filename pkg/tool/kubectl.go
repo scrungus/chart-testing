@@ -184,6 +184,43 @@ func (k Kubectl) WaitForDeployments(namespace string, selector string) error {
 	return nil
 }
 
+func (k Kubectl) WaitForManifestsAndRelease(namespace string, selector string) error {
+
+	for i := 1; i <= 300; i++ {
+		output, err := k.exec.RunProcessAndCaptureOutput("kubectl",
+			"wait", "manifests", "--all", "--namespace", namespace,
+			" --for=jsonpath='{.status.phase}'=Deployed",
+			"--selector", fmt.Sprintf("capi.stackhpc.com/cluster=%s", selector),
+			"--timeout=0")
+
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(output)
+
+		time.Sleep(10 * time.Second)
+	}
+
+	for i := 1; i <= 300; i++ {
+		output, err := k.exec.RunProcessAndCaptureOutput("kubectl",
+			"wait", "helmreleases", "--all", "--namespace", namespace,
+			" --for=jsonpath='{.status.phase}'=Deployed",
+			"--selector", fmt.Sprintf("capi.stackhpc.com/cluster=%s", selector),
+			"--timeout=0")
+
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(output)
+
+		time.Sleep(10 * time.Second)
+	}
+
+	return nil
+}
+
 func (k Kubectl) GetPodsforDeployment(namespace string, deployment string) ([]string, error) {
 	jsonString, _ := k.exec.RunProcessAndCaptureOutput("kubectl",
 		fmt.Sprintf("--request-timeout=%s", k.timeout),

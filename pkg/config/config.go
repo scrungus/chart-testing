@@ -72,6 +72,7 @@ type Configuration struct {
 	KubectlTimeout          time.Duration `mapstructure:"kubectl-timeout"`
 	PrintLogs               bool          `mapstructure:"print-logs"`
 	ExtraValues             []string      `mapstructure:"extra-values"`
+	OpenStackDeploy         bool          `mapstructure:"openstack-deploy"`
 }
 
 func LoadConfiguration(cfgFile string, cmd *cobra.Command, printConfig bool) (*Configuration, error) {

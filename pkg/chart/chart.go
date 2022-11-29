@@ -115,6 +115,7 @@ type Kubectl interface {
 	CreateNamespace(namespace string) error
 	DeleteNamespace(namespace string)
 	WaitForDeployments(namespace string, selector string) error
+	WaitForManifestsAndRelease(namespace string, selector string) error
 	GetPodsforDeployment(namespace string, deployment string) ([]string, error)
 	GetPods(args ...string) ([]string, error)
 	GetEvents(namespace string) error
@@ -674,6 +675,11 @@ func (t *Testing) doUpgrade(oldChart, newChart *Chart, oldChartMustPass bool) er
 func (t *Testing) testRelease(namespace, release, releaseSelector string) error {
 	if err := t.kubectl.WaitForDeployments(namespace, releaseSelector); err != nil {
 		return err
+	}
+	if t.config.OpenStackDeploy {
+		if err := t.kubectl.WaitForManifestsAndRelease(namespace, releaseSelector); err != nil {
+			return err
+		}
 	}
 	if err := t.helm.Test(namespace, release); err != nil {
 		return err
