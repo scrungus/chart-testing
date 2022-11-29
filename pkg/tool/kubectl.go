@@ -197,6 +197,7 @@ func (k Kubectl) WaitForManifestsAndRelease(namespace string, selector string) e
 			return err
 		}
 
+		fmt.Println("Waiting for manifests...")
 		fmt.Println(output)
 
 		time.Sleep(10 * time.Second)
@@ -213,6 +214,7 @@ func (k Kubectl) WaitForManifestsAndRelease(namespace string, selector string) e
 			return err
 		}
 
+		fmt.Println("Waiting for helmreleases...")
 		fmt.Println(output)
 
 		time.Sleep(10 * time.Second)
