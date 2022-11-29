@@ -58,10 +58,13 @@ func (h Helm) LintWithValues(chart string, valuesFiles []string) error {
 	return h.exec.RunProcess("helm", "lint", chart, values)
 }
 
-func (h Helm) InstallWithValues(chart string, valuesFile string, namespace string, release string) error {
+func (h Helm) InstallWithValues(chart string, valuesFiles []string, namespace string, release string) error {
 	var values []string
-	if valuesFile != "" {
-		values = []string{"--values", valuesFile}
+
+	for _, valuesFile := range valuesFiles {
+		if valuesFile != "" {
+			values = append(values, []string{"--values", valuesFile}...)
+		}
 	}
 
 	if err := h.exec.RunProcess("helm", "install", release, chart, "--namespace", namespace,

@@ -85,7 +85,7 @@ type Helm interface {
 	BuildDependencies(chart string) error
 	BuildDependenciesWithArgs(chart string, extraArgs []string) error
 	LintWithValues(chart string, valuesFile []string) error
-	InstallWithValues(chart string, valuesFile string, namespace string, release string) error
+	InstallWithValues(chart string, valuesFile []string, namespace string, release string) error
 	Upgrade(chart string, namespace string, release string) error
 	Test(namespace string, release string) error
 	DeleteRelease(namespace string, release string)
@@ -563,8 +563,17 @@ func (t *Testing) doInstall(chart *Chart) error {
 	}
 
 	for _, valuesFile := range valuesFiles {
+
+		// Install with extra value files if specified
+		extraValues := t.config.ExtraValues
+		extraValues = append(extraValues, valuesFile)
+
 		if valuesFile != "" {
 			fmt.Printf("\nInstalling chart with values file %q...\n\n", valuesFile)
+		}
+
+		if len(t.config.ExtraValues) > 0 {
+			fmt.Printf("\nIncluding extra value files: %s...\n\n", strings.Join(t.config.ExtraValues, ", "))
 		}
 
 		// Use anonymous function. Otherwise deferred calls would pile up
@@ -580,7 +589,7 @@ func (t *Testing) doInstall(chart *Chart) error {
 					return err
 				}
 			}
-			if err := t.helm.InstallWithValues(chart.Path(), valuesFile, namespace, release); err != nil {
+			if err := t.helm.InstallWithValues(chart.Path(), extraValues, namespace, release); err != nil {
 				return err
 			}
 			return t.testRelease(namespace, release, releaseSelector)
@@ -601,12 +610,21 @@ func (t *Testing) doUpgrade(oldChart, newChart *Chart, oldChartMustPass bool) er
 		valuesFiles = append(valuesFiles, "")
 	}
 	for _, valuesFile := range valuesFiles {
+
+		// Install with extra value files if specified
+		extraValues := t.config.ExtraValues
+		extraValues = append(extraValues, valuesFile)
+
 		if valuesFile != "" {
 			if t.config.SkipMissingValues && !newChart.HasCIValuesFile(valuesFile) {
 				fmt.Printf("Upgrade testing for values file %q skipped because a corresponding values file was not found in %s/ci\n", valuesFile, newChart.Path())
 				continue
 			}
 			fmt.Printf("\nInstalling chart %q with values file %q...\n\n", oldChart, valuesFile)
+		}
+
+		if len(t.config.ExtraValues) > 0 {
+			fmt.Printf("\nIncluding extra value files: %s...\n\n", strings.Join(t.config.ExtraValues, ", "))
 		}
 
 		// Use anonymous function. Otherwise deferred calls would pile up
@@ -623,7 +641,7 @@ func (t *Testing) doUpgrade(oldChart, newChart *Chart, oldChartMustPass bool) er
 				}
 			}
 			// Install previous version of chart. If installation fails, ignore this release.
-			if err := t.helm.InstallWithValues(oldChart.Path(), valuesFile, namespace, release); err != nil {
+			if err := t.helm.InstallWithValues(oldChart.Path(), extraValues, namespace, release); err != nil {
 				if oldChartMustPass {
 					return err
 				}

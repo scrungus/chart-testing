@@ -103,7 +103,7 @@ func (h *fakeHelm) BuildDependenciesWithArgs(chart string, extraArgs []string) e
 	return nil
 }
 func (h *fakeHelm) LintWithValues(chart string, valuesFile []string) error { return nil }
-func (h *fakeHelm) InstallWithValues(chart string, valuesFile string, namespace string, release string) error {
+func (h *fakeHelm) InstallWithValues(chart string, valuesFile []string, namespace string, release string) error {
 	return nil
 }
 func (h *fakeHelm) Upgrade(chart string, namespace string, release string) error {
