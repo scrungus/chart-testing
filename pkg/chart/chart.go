@@ -562,9 +562,7 @@ func (t *Testing) doInstall(chart *Chart) error {
 	if len(valuesFiles) == 0 {
 		valuesFiles = append(valuesFiles, "")
 	}
-
 	for _, valuesFile := range valuesFiles {
-
 		// Install with extra value files if specified
 		extraValues := t.config.ExtraValues
 		extraValues = append(extraValues, valuesFile)
@@ -611,7 +609,6 @@ func (t *Testing) doUpgrade(oldChart, newChart *Chart, oldChartMustPass bool) er
 		valuesFiles = append(valuesFiles, "")
 	}
 	for _, valuesFile := range valuesFiles {
-
 		// Install with extra value files if specified
 		extraValues := t.config.ExtraValues
 		extraValues = append(extraValues, valuesFile)

@@ -185,7 +185,6 @@ func (k Kubectl) WaitForDeployments(namespace string, selector string) error {
 }
 
 func (k Kubectl) WaitForManifestsAndRelease(namespace string, selector string) error {
-
 	for i := 1; i <= 300; i++ {
 		output, err := k.exec.RunProcessAndCaptureOutput("kubectl",
 			"wait", "manifests", "--all", "--namespace", namespace,
